@@ -58,7 +58,7 @@ class PaymentController extends PayumController
         $payment = $this->getPayum()
             ->getStorage('Acme\PaymentBundle\Entity\Payment')
             ->findBy(array(
-                'number' => $request->request->get(Api::ORDER_ID_PARAM_NAME),
+                'number' => $request->query->get(Api::ORDER_ID_PARAM_NAME),
             ));
 
         if ($reply = $gateway->execute(new Notify($payment), true)) {
@@ -130,6 +130,8 @@ class PaymentController extends PayumController
 
         $payment = $storage->create();
         $payment->setNumber($order->getId());
+        $payment->setCurrencyCode('RUB');
+        $payment->setTotalAmount(14025); // 140 руб, 25 коп.
 
         $storage->update($payment);
 
@@ -141,24 +143,6 @@ class PaymentController extends PayumController
             );
 
         return $this->redirect($captureToken->getTargetUrl());
-    }
-
-    public function doneAction(Request $request)
-    {
-        $token = $this->getHttpRequestVerifier()->verify($request);
-        $gateway = $this->getPayum()->getPayment($token->getPaymentName());
-
-        $gateway->execute($status = new GetHumanStatus($token));
-        $payment = $status->getFirstModel();
-
-        //update order status here
-        // if ($status->isCaptured()) {
-        //     $order->setPaid(true);
-        // }
-
-        $this->get('payum.security.http_request_verifier')->invalidate($token);
-
-        return $this->redirect($this->generateUrl('acme_thank_you_page'));
     }
 }
 ```
