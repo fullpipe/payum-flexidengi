@@ -47,7 +47,7 @@ class NotifyAction extends PaymentAwareAction implements ApiAwareInterface
             throw new HttpResponse('The notification is invalid', 400);
         }
 
-        $details = array_merge($details, $httpRequest->request);
+        $details->replace($httpRequest->query);
 
         throw new HttpResponse('', 200);
     }
