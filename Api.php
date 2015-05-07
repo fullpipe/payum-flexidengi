@@ -102,7 +102,7 @@ class Api
             'price' => null,
             'price_rub' => null,
             'currency' => null,
-            'share ' => null,
+            'share' => null,
             'share_rub' => null,
             'transaction_date' => null,
             'payment_method_id' => null,
