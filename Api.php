@@ -40,6 +40,11 @@ class Api
         return $this->config['service_id'];
     }
 
+    public function getPaymentMethodId()
+    {
+        return $this->config['payment_method_id'];
+    }
+
     public function getProductId()
     {
         return $this->config['product_id'];
@@ -73,7 +78,7 @@ class Api
             'summ' => null,
             'currency' => null,
             'count' => null,
-            'payment_method_id' => null,
+            'payment_method_id' => $this->getPaymentMethodId(),
             'secret_key' => $this->getSecret(),
         );
 
@@ -105,7 +110,7 @@ class Api
             'share' => null,
             'share_rub' => null,
             'transaction_date' => null,
-            'payment_method_id' => null,
+            'payment_method_id' => $this->getPaymentMethodId(),
             'product_id' => null,
             'secret_key' => $this->getSecret(),
         );

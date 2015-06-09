@@ -63,6 +63,7 @@ class PaymentFactory implements PaymentFactoryInterface
             $config['payum.default_options'] = array(
                 'service_id' => null,
                 'product_id' => null,
+                'payment_method_id' => null,
                 'secret' => null,
                 'sandbox' => true,
             );
@@ -76,6 +77,7 @@ class PaymentFactory implements PaymentFactoryInterface
                 $flexidengiConfig = array(
                     'service_id' => $config['service_id'],
                     'product_id' => $config['product_id'],
+                    'payment_method_id' => $config['payment_method_id'],
                     'secret' => $config['secret'],
                     'sandbox' => $config['sandbox'],
                 );

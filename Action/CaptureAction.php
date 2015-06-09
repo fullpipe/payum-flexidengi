@@ -41,10 +41,12 @@ class CaptureAction implements ActionInterface, ApiAwareInterface
         $details = ArrayObject::ensureArrayObject($request->getModel());
 
         $details['service_id'] = $this->api->getServiceId();
+        $details['payment_method_id'] = $this->api->getPaymentMethodId();
         $details['hash'] = $this->api->sing($details->toUnsafeArray());
 
         $details->validatedKeysSet(array(
             'service_id',
+            'payment_method_id',
             'order_id',
             'customer_id',
             'hash',

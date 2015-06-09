@@ -99,6 +99,7 @@ payum:
         flexidengi_gateway:
             flexidengi:
                 service_id: 123
+                payment_method_id: 45
                 secret: SECRET_KEY
                 sandbox: true
         ...
