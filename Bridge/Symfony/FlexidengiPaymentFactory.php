@@ -25,6 +25,7 @@ class FlexidengiPaymentFactory extends AbstractPaymentFactory
         $builder->children()
             ->scalarNode('service_id')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('product_id')->defaultNull()->end()
+            ->scalarNode('payment_method_id')->defaultNull()->end()
             ->scalarNode('secret')->isRequired()->cannotBeEmpty()->end()
             ->booleanNode('sandbox')->defaultTrue()->end()
             ->end();
